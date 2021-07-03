@@ -1,0 +1,33 @@
+<html>
+	<meta charset="UTF-8"/>
+	<head th:replace="~{base :: head}"></head>
+	<body>
+		<div th:replace="~{base :: logo}"></div>
+	
+		<div class="container col-6">
+			<div th:replace="~{base :: titulo('Login')}"></div>
+		
+			<div class="card mb-3">
+				<div class="alert alert-danger" th:if="${param.error}">Login ou senha incorreta</div>
+        		<div class="alert alert-primary" th:if="${param.logout}">Você foi desleslogado</div>
+				<form th:action="@{/login}" class="card-body" method="post">
+					<div class="form-group">
+						<label for="login">Usuário</label>
+						<input name="username"  class="form-control" placeholder="usuário"/>
+					</div>
+					<div class="form-group">
+						<label for="senha">Senha</label>
+						<input type="password" name="password" class="form-control" placeholder="senha"/>
+					</div>
+					<div class="d-grid gap-2 mt-3">
+						<button class="btn btn-secondary mb-3" type="submit">Login</button>
+					</div>
+					<spam>Não é cadastrado ainda?</spam>
+					<div class="d-grid gap-2 ">
+						<a class="btn btn-secondary" th:href="@{/cadastro/formulario}">Cadastrar</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
