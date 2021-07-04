@@ -30,23 +30,29 @@ public class ViagemController {
 
 	@GetMapping("formulario")
 	public String formulario(RequisicaoNovaViagem requisicao) {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Optional<User> user = userRepository.findByLogin(username);
+		if(user.get().getViajante() != null) {
+			return "viagem/formulario";
+		}
+		else {
+			return"redirect:/cadastro/formularioViajante";
+		}
 
-		return "viagem/formulario";
+		
 	}
 
 	@PostMapping("novo")
 	public String novo(@Valid RequisicaoNovaViagem requisicao, BindingResult result) {
 		if (result.hasErrors()) {
-			System.out.println();
 			return "viagem/formulario";
 		}
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		Optional<User> user = userRepository.findByLogin(username);
 		Viagem viagem = requisicao.toViagem();
 		viagem.setUser(user.get());
-		System.out.println("print");
 		viagemRepository.save(viagem);
-
+	
 		return "redirect:/home";
 	}
 }

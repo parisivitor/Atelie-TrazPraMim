@@ -1,33 +1,26 @@
-package br.com.padawans.trazpramim.model;
+package br.com.padawans.trazpramim.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "viajantes")
-public class Viajante {
+import org.springframework.stereotype.Controller;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+import br.com.padawans.trazpramim.model.Viajante;
+
+@Controller
+public class RequisicaoViajante {
+
+	@NotBlank
 	private String marca;
+	@NotBlank
 	private String modelo;
+	@NotBlank
 	private String numeroPortas;
+	@NotBlank
 	private String placa;
+	
 	private String urlCarro;
 
-	public Viajante() {
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
+	public RequisicaoViajante() {
 	}
 
 	public String getMarca() {
@@ -68,6 +61,16 @@ public class Viajante {
 
 	public void setUrlCarro(String urlCarro) {
 		this.urlCarro = urlCarro;
+	}
+	
+	public Viajante toViajante() {
+		Viajante viajante = new Viajante();
+		viajante.setMarca(marca);
+		viajante.setModelo(modelo);
+		viajante.setNumeroPortas(numeroPortas);
+		viajante.setPlaca(placa);
+		viajante.setUrlCarro(urlCarro);
+		return viajante;
 	}
 
 }

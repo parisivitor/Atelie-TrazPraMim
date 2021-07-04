@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -42,6 +41,10 @@ public class User implements UserDetails {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "enderecos_id")
 	private Endereco enderecos;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "viajante_id")
+	private Viajante viajante;
 
 	@Override
 	public int hashCode() {
@@ -118,7 +121,6 @@ public class User implements UserDetails {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	
 
 	public String getCpf() {
 		return cpf;
@@ -149,6 +151,22 @@ public class User implements UserDetails {
 	@Override
 	public String getUsername() {
 		return this.login;
+	}
+
+	public Endereco getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(Endereco enderecos) {
+		this.enderecos = enderecos;
+	}
+
+	public Viajante getViajante() {
+		return viajante;
+	}
+
+	public void setViajante(Viajante viajante) {
+		this.viajante = viajante;
 	}
 
 	@Override
