@@ -1,0 +1,58 @@
+<html>
+<meta charset="UTF-8"/>
+<head th:replace="~{base :: head}"></head>
+	<body>
+		<div th:replace="~{base :: logo}"></div>
+		<div class="container">
+		
+			<div th:replace="~{base :: titulo('Novo Pedido')}"></div>
+			
+			<div class="card mt-3">
+				<form th:action="@{/viagem/novo}" th:object="${requisicaoNovaViagem}" class="card-body"  method="POST">
+					<div class="form-group">
+						<label for="nomeProduto">Cidade de Origem</label>
+						<input th:field="*{cidadeOrigem}" th:errorclass="is-invalid"  class="form-control" placeholder="nome do produto"/>
+						<small></small>
+					</div>
+					<div class="form-group">
+						<label for="urlProduto">Cidade de Destino</label>
+						<input th:field="*{cidadeDestino}" th:errorclass="is-invalid"  class="form-control"   placeholder="url do produto"/>
+						<small></small>
+					</div>
+					<div class="form-group mt-3">
+						<label for="dataNascimento"?>Data de nascimento*</label>
+						<input th:field="*{dataDaEntrega}" th:errorclass="is-invalid"  class="form-control" type="date"  placeholder="Digite sua data de nascimento"/>
+						<small></small>
+					</div>
+					<div class="form-group">
+						<label for="descricao">Descricao</label>
+						<textarea class="form-control" name="descricao" placeholder="Adicione detalhes importantes para ajudar o comprador"></textarea>
+					</div>
+					
+					<div th:replace="~{base :: titulo('Produtos')}"></div>
+					<div class="form-group">
+						<label for="nomeProduto">Nome do Produto</label>
+						<input th:field="*{nomeProduto}" th:errorclass="is-invalid"  class="form-control" placeholder="nome do produto"/>
+						<small></small>
+					</div>
+					<div class="form-group">
+						<label for="quantidade">Quantidade disponivel</label>
+						<input th:field="*{quantidade}" th:errorclass="is-invalid"  class="form-control" placeholder="nome do produto"/>
+						<small></small>
+					</div>
+					<div class="form-group">
+						<label for="preco">Preço</label>
+						<input th:field="*{preco}" th:errorclass="is-invalid"  class="form-control" placeholder="nome do produto"/>
+						<small></small>
+					</div>
+					<div class="form-group">
+						<label for="urlImagem">Url da imagem</label>
+						<input th:field="*{urlImagem}" th:errorclass="is-invalid"  class="form-control" placeholder="nome do produto"/>
+						<small></small>
+					</div>
+					<button class="btn btn-primary mt-3" type="submit">Publicar Viagem</button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

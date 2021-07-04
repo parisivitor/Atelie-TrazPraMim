@@ -11,6 +11,7 @@ import br.com.padawans.trazpramim.model.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 	
 	Optional<User> findByLogin(String login);
+//	User findByLogin(String login);
 
 
 }

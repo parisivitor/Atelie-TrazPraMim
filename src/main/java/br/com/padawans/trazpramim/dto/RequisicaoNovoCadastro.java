@@ -51,7 +51,7 @@ public class RequisicaoNovoCadastro {
 	@NotBlank
 	private String complemento;
 
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	public String getLogin() {
 		return login;
