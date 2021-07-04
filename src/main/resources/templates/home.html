@@ -3,10 +3,36 @@
 <body>
 	<div th:replace="~{base :: logo}"></div>
 	<div class="container">
-		<div th:replace="~{base :: titulo('Ultimos Pedidos')}"></div>
+		<div th:replace="~{base :: titulo('Traz Pra Mim')}"></div>
 		<div class="card mb-3">
 			<img src="https://image.freepik.com/vetores-gratis/oferta-de-compra-a-prazo-negocio-de-compras-servico-ao-cliente-conveniente_335657-3151.jpg" class="img-fluid" alt="...">
 		</div>
+		<div th:replace="~{base :: titulo('Viagens Acontecendo')}"></div>
+		<div class="card mb-3" th:each="viagem : ${viagens}">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-12 col-sm-8 mb-3">
+							<div class="row ">
+								<div class="col-md-5">Valor: <span th:if="${viagem.preco} != null" th:text="${'R$ ' + #numbers.formatDecimal(viagem.preco, 3, 'POINT', 2, 'COMMA')}">200,99</span></div>
+								<div class="col-md-6">Data da entrega: <span th:text="${#temporals.format(viagem.dataDaEntrega, 'dd/MM/yyyy')}">10/02/2020</span></div>
+							</div>
+							
+							<div>Produto</div> 
+							<div> <input class="form-control" th:value="${viagem.nomeProduto}" value="url do produto" /></div>
+							 
+							<div>Descrição</div>
+							<div>
+								<textarea class="form-control" th:text="${viagem.descricao}">descrição do pedido</textarea>
+							</div>
+						</div>
+						<div class="col-12 col-sm-4">
+							<div>
+								<img class="img-thumbnail" th:src="${viagem.urlImagem}" src="" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 	</div>
 	
 	
