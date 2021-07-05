@@ -18,6 +18,12 @@ Local: src/main/resources/application.properties
 Para executar basta abrir o projeto em sua IDE de preferencia e dar RUN no aqruivo TrazPramimApplication.java
 Local: src/main/java/br/com/padawans/trazpramim/TrazPramimApplication.java
 
+# Planejamento
+https://www.figma.com/file/2K7GFXNt4hiCvjbVgNnKGc/Planejamento-Padawans?node-id=0%3A1
+
+# Prototipação
+https://www.figma.com/file/vldtSwnKQoRgT1jY0hdGoK/Prototipagem-Padawans?node-id=51%3A294
+
 # Produção
 Ideia do projeto: Atelie de Software 
 | Planejado,prototipado e produzido por: Vitor Parisi
