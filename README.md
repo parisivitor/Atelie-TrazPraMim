@@ -2,9 +2,9 @@
 Projeto para o programa de trainee da Ateliê de Software
 
 # Tecnologia/Framework Utilizados:
-Spring boot, spring data, thymeleaf, srping security e spring bean validation.
+Spring boot, spring data, thymeleaf, spring security e spring bean validation.
 
-#Font-End
+# Font-End
 Html, bootstrap5, e injeção de dados no html com o thymeleaf.
 
 # Banco de dados:
