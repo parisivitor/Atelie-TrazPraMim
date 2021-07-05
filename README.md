@@ -19,5 +19,5 @@ Para executar basta abrir o projeto em sua IDE de preferencia e dar RUN no aqrui
 Local: src/main/java/br/com/padawans/trazpramim/TrazPramimApplication.java
 
 # Produção
-Ideia do projeto: Atelie de Software
-Planejado,prototipado e produzido por: Vitor Parisi
+Ideia do projeto: Atelie de Software 
+| Planejado,prototipado e produzido por: Vitor Parisi
