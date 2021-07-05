@@ -3,54 +3,86 @@
 <head th:replace="~{base :: head}"></head>
 	<body>
 		<div th:replace="~{base :: logo}"></div>
-		<div class="container">
-		
-			<div th:replace="~{base :: titulo('Novo Pedido')}"></div>
-			
+		<div class="container col-6">
+			<div th:replace="~{base :: titulo('Nova Viagem')}"></div>
+
 			<div class="card mt-3">
-				<form th:action="@{/viagem/novo}" th:object="${requisicaoNovaViagem}" class="card-body"  method="POST">
-					<div class="form-group">
-						<label for="nomeProduto">Cidade de Origem</label>
-						<input th:field="*{cidadeOrigem}" th:errorclass="is-invalid"  class="form-control" placeholder="nome do produto"/>
+				<form th:action="@{/viagem/novo}" th:object="${requisicaoNovaViagem}" class="card-body row g-3"  method="POST">
+					<div th:if="${erro} == true" class="alert alert-danger " role="alert">Todos os campos com ! são obrigatórios.</div>
+					<div class="form-group col-md-6">
+						<label for="nomeProduto">Cidade de origem*</label>
+						<div class="input-group">
+							<input th:field="*{cidadeOrigem}" th:errorclass="is-invalid"  class="form-control" placeholder="Saindo de..."/>
+							<div class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+							  	<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+								</svg>
+							</div>
+						</div>
 						<small></small>
 					</div>
-					<div class="form-group">
-						<label for="urlProduto">Cidade de Destino</label>
-						<input th:field="*{cidadeDestino}" th:errorclass="is-invalid"  class="form-control"   placeholder="url do produto"/>
+					<div class="form-group col-md-6">
+						<label for="urlProduto">Cidade de destino*</label>
+						<div class="input-group">
+							<input th:field="*{cidadeDestino}" th:errorclass="is-invalid"  class="form-control"   placeholder="Indo para..."/>
+							<div class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+							  	<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+								</svg>
+							</div>
+						</div>
 						<small></small>
 					</div>
-					<div class="form-group mt-3">
-						<label for="dataNascimento"?>Data de nascimento*</label>
-						<input th:field="*{dataDaEntrega}" th:errorclass="is-invalid"  class="form-control" type="date"  placeholder="Digite sua data de nascimento"/>
+					<div class="col-md-3"></div>
+					<div class="form-group mt-3 col-md-6">
+						<label for="dataDaEntrega"?>Data de chegada*</label>
+						<input th:field="*{dataDaEntrega}" th:errorclass="is-invalid"  class="form-control" type="date"  placeholder=""/>
 						<small></small>
 					</div>
-					<div class="form-group">
-						<label for="descricao">Descricao</label>
-						<textarea class="form-control" name="descricao" placeholder="Adicione detalhes importantes para ajudar o comprador"></textarea>
+					<div class="col-md-12"></div>
+					<div class="alert alert-dark d-flex align-items-center mt-3" role="alert">
+					  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+					  	<div><h3 style="color:gray;">Produto</h3></div>
 					</div>
-					
-					<div th:replace="~{base :: titulo('Produtos')}"></div>
-					<div class="form-group">
-						<label for="nomeProduto">Nome do Produto</label>
+					<div class="form-group col-md-6">
+						<label for="nomeProduto">Nome do Produto*</label>
 						<input th:field="*{nomeProduto}" th:errorclass="is-invalid"  class="form-control" placeholder="nome do produto"/>
 						<small></small>
 					</div>
-					<div class="form-group">
-						<label for="quantidade">Quantidade disponivel</label>
-						<input th:field="*{quantidade}" th:errorclass="is-invalid"  class="form-control" placeholder="nome do produto"/>
+					<div class="form-group col-md-2">
+						<label for="quantidade">Quantidade*</label>
+						<input th:field="*{quantidade}" th:errorclass="is-invalid"  class="form-control" placeholder="Quantidade"/>
+						<div class="invalid-feedback" th:errors="*{quantidade}"></div>
 						<small></small>
 					</div>
-					<div class="form-group">
-						<label for="preco">Preço</label>
-						<input th:field="*{preco}" th:errorclass="is-invalid"  class="form-control" placeholder="nome do produto"/>
-						<small></small>
+					<div class="form-group col-md-4">
+						<label for="preco">Preço*</label>
+						<div class="input-group">
+							<div class="input-group-text">R$</div>
+							<input th:field="*{preco}" th:errorclass="is-invalid"  class="form-control" placeholder="Ex: 25.50"/>
+							<div class="invalid-feedback" th:errors="*{preco}"></div>
+						</div>
+						
+						<small>Obs: Acrescente o valor do frete</small>
 					</div>
-					<div class="form-group">
-						<label for="urlImagem">Url da imagem</label>
-						<input th:field="*{urlImagem}" th:errorclass="is-invalid"  class="form-control" placeholder="nome do produto"/>
+					<div class="form-group col-md-4">
+						<label for="urlImagem">URL da imagem</label>
+						<input th:field="*{urlImagem}" th:errorclass="is-invalid"  class="form-control" placeholder="Cole aqui o link da imagem do produto"/>
 						<small></small>
+						<div class="invalid-feedback" th:errors="*{urlImagem}"></div>
 					</div>
-					<button class="btn btn-primary mt-3" type="submit">Publicar Viagem</button>
+					<div class="form-group col-md-8">
+						<label for="descricao">Descrição</label>
+						<textarea class="form-control" name="descricao" placeholder="Adicione detalhes importantes para ajudar o comprador"></textarea>
+					</div>
+					<a th:href="@{/home}" class="btn btn-secondary mt-3 col-md-5 ">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+ 							<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+					</svg>Voltar</a>
+					<div class="col-md-2"></div>
+					<button class="btn btn-secondary mt-3 col-md-5 " type="submit">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+  							<path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+  							<path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+						</svg>Publicar Viagem</button>
 				</form>
 			</div>
 		</div>

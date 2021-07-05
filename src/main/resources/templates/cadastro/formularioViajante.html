@@ -4,38 +4,54 @@
 	<body>
 		<div th:replace="~{base :: logo}"></div>
 		<div class="container col-6">
-		
-			<div th:replace="~{base :: titulo('Viajante')}"></div>
+			<div th:replace="~{base :: titulo('Cadastre seu carro')}"></div>
+			
+			<div class="alert alert-warning" role="alert">
+			  <h4 class="alert-heading">Você ainda não é registrado como viajante.</h4>
+			  <p>Para ser um viajante, basta adicionar os dados do seu carro.</p>
+			  <hr>
+			  <p class="mb-0">Após isso, você pode publicar suas viagens!</p>
+			</div>
 			
 			<div class="card mt-3">
-				<form th:action="@{/cadastro/novoViajante}" th:object="${requisicaoViajante}" class="card-body"  method="POST">
+				<form th:action="@{/cadastro/novoViajante}" th:object="${requisicaoViajante}" class="card-body row g-3"  method="POST">
 					<div class="alert alert-danger" role="alert" th:text="${erroSenha}" th:if="${not #strings.isEmpty(erroSenha)}"></div>
-					<div class="form-group mt-3">
-						<label for="login"?>Marca*</label>
-						<input th:field="*{marca}" th:errorclass="is-invalid"  class="form-control" placeholder="Digite seu email"/>
+					<div class="form-group mt-3 col-md-4">
+						<label for="marca"?>Marca*</label>
+						<input th:field="*{marca}" th:errorclass="is-invalid"  class="form-control" placeholder="Ex: Fiat"/>
 						<small></small>
 					</div>
-					<div class="form-group mt-3">
-						<label for="senha"?>Modelo*</label>
-						<input th:field="*{modelo}" th:errorclass="is-invalid"  class="form-control"   placeholder="Digite sua senha"/>
+					<div class="form-group mt-3 col-md-4">
+						<label for="modelo"?>Modelo*</label>
+						<input th:field="*{modelo}" th:errorclass="is-invalid"  class="form-control"   placeholder="Ex: Palio"/>
 						<small></small>
 					</div>
-					<div class="form-group mt-3">
-						<label for="senha"?>Numuero de Portas*</label>
-						<input th:field="*{numeroPortas}" th:errorclass="is-invalid"  class="form-control"   placeholder="Confirme sua senha"/>
+					<div class="form-group mt-3 col-md-4">
+						<label for="numeroPortas"?>Número de portas*</label>
+						<input th:field="*{numeroPortas}" th:errorclass="is-invalid"  class="form-control"   placeholder="Ex: 4"/>
 						<small></small>
 					</div>
-					<div class="form-group mt-3">
-						<label for="nome"?>Placa*</label>
-						<input th:field="*{placa}" th:errorclass="is-invalid"  class="form-control"   placeholder="Digite seu nome"/>
+					<div class="form-group mt-3 col-md-4">
+						<label for="placa"?>Placa*</label>
+						<input th:field="*{placa}" th:errorclass="is-invalid"  class="form-control"   placeholder="Ex: TRAZ0000"/>
 						<small></small>
 					</div>
-					<div class="form-group mt-3">
-						<label for="sobrenome"?>Url foto do carro*</label>
-						<input th:field="*{urlCarro}" th:errorclass="is-invalid"  class="form-control"   placeholder="Digite sua sobrenome"/>
+					<div class="form-group mt-3 col-md-8">
+						<label for="urlCarro"?>URL Foto do carro</label>
+						<input th:field="*{urlCarro}" th:errorclass="is-invalid"  class="form-control"   placeholder="Cole aqui o link da imagem"/>
 						<small></small>
+						<div class="invalid-feedback" th:errors="*{urlCarro}"></div>
 					</div>
-					<button class="btn btn-primary mt-3" type="submit">Finalizar</button>
+					<a th:href="@{/home}" class="btn btn-secondary mt-3 col-md-5 ">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+ 							<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+					</svg>Voltar</a>
+					<div class="col-md-2"></div>
+					<button class="btn btn-secondary mt-3 col-md-5 " type="submit">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+  							<path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+  							<path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+						</svg>Finalizar</button>
 				</form>
 			</div>
 		</div>

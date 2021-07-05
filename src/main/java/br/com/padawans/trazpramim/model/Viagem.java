@@ -22,7 +22,7 @@ public class Viagem {
 	
 	private String nomeProduto;
 	private String urlImagem;
-	private Integer Quantidade;
+	private Integer quantidade;
 	private BigDecimal preco;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -96,11 +96,11 @@ public class Viagem {
 	}
 
 	public Integer getQuantidade() {
-		return Quantidade;
+		return quantidade;
 	}
 
 	public void setQuantidade(Integer quantidade) {
-		Quantidade = quantidade;
+		this.quantidade = quantidade;
 	}
 
 	public BigDecimal getPreco() {

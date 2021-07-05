@@ -7,11 +7,11 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.padawans.trazpramim.dto.RequisicaoNovoCadastro;
 import br.com.padawans.trazpramim.dto.RequisicaoViajante;
@@ -36,20 +36,19 @@ public class CadastroController {
 	}
 
 	@PostMapping("novo")
-	public String novo(@Valid RequisicaoNovoCadastro requisicao, BindingResult result, RedirectAttributes attributes) {
+	public String novo(@Valid RequisicaoNovoCadastro requisicao, BindingResult result, Model model) {
 		if (result.hasErrors())
 			return "cadastro/formulario";
 
 		if (!requisicao.getSenha().equals(requisicao.getConfirmarSenha())) {
-//			attributes.addFlashAttribute("erroSenha", "As senhas digitadas precisam ser iguais");
-//			attributes.addAttribute(requisicao);
+			model.addAttribute("erro", true);
 			return "cadastro/formulario";
 		}
-
+		model.addAttribute("sucesso", true);
 		User user = requisicao.toCadastro();
 		userRepository.save(user);
 
-		return "redirect:/login";
+		return "login";
 	}
 
 	@GetMapping("formularioViajante")

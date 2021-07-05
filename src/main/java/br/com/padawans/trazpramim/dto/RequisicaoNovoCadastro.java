@@ -18,25 +18,26 @@ import br.com.padawans.trazpramim.model.User;
 public class RequisicaoNovoCadastro {
 
 	@NotBlank
-	@Email
+	@Email(message = "Email inválido")
 	private String login;
 	@NotBlank
-	@Size(min = 6, max = 20)
+	@Size(min = 8, max = 20, message = "No minimo 8 caracteres")
 	private String senha;
 	@NotBlank
+	@Size(min = 8, max = 20)
 	private String confirmarSenha;
 	@NotBlank
 	private String nome;
 	@NotBlank
 	private String sobrenome;
-	@NotBlank
+	@NotBlank @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$", message = "Data invalida")
 	private String dataNascimento;
 	@NotBlank
 	private String sexo;
-	@NotBlank @Pattern(regexp = "^\\d{3}.?\\d{3}.?\\d{3}-?\\d{2}$")
+	@NotBlank @Pattern(regexp = "^\\d{11}$", message = "Digite o cpf sem . e sem -, Ex:12345678912")
 	private String cpf;
 	
-	@NotBlank @Pattern(regexp = "^\\d{5}-\\d{3}$")
+	@NotBlank @Pattern(regexp = "^\\d{5}-\\d{3}$", message = "Digite com -, Ex: 12345-123")
 	private String cep;
 	@NotBlank
 	private String estado;
@@ -46,7 +47,7 @@ public class RequisicaoNovoCadastro {
 	private String rua;
 	@NotNull
 	private Integer numero;
-	@NotBlank
+
 	private String complemento;
 
 //	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

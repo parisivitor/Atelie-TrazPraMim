@@ -8,61 +8,73 @@
 			<div th:replace="~{base :: titulo('Cadastro')}"></div>
 			
 			<div class="card mt-3">
-				<form th:action="@{/cadastro/novo}" th:object="${requisicaoNovoCadastro}" class="card-body"  method="POST">
-					<div class="alert alert-danger" role="alert" th:text="${erroSenha}" th:if="${not #strings.isEmpty(erroSenha)}"></div>
-					<div class="form-group mt-3">
+				<form th:action="@{/cadastro/novo}" th:object="${requisicaoNovoCadastro}" class="card-body row g-3"  method="POST">
+					<div class="alert alert-dark d-flex align-items-center" role="alert">
+					  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+					  	<div><h3 style="color:gray;">Dados Pessoais</h3></div>
+					</div>
+					<div class="form-group mt-3 col-md-4">
 						<label for="nome"?>Nome*</label>
 						<input th:field="*{nome}" th:errorclass="is-invalid"  class="form-control"   placeholder="Digite seu nome"/>
 						<small></small>
 					</div>
-					<div class="form-group mt-3">
+					<div class="form-group mt-3 col-md-4">
 						<label for="sobrenome"?>Sobrenome*</label>
-						<input th:field="*{sobrenome}" th:errorclass="is-invalid"  class="form-control"   placeholder="Digite sua sobrenome"/>
+						<input th:field="*{sobrenome}" th:errorclass="is-invalid"  class="form-control"   placeholder="Digite seu sobrenome"/>
 						<small></small>
 					</div>
-					<div class="form-group mt-3">
-						<label for="login"?>Email*</label>
+					<div class="form-group mt-3 col-md-4 mb-3">
+						<label for="login">Email*</label>
 						<input th:field="*{login}" th:errorclass="is-invalid"  class="form-control" placeholder="Digite seu email"/>
-						<small>pessoal@email.com</small>
+						<div class="invalid-feedback" th:errors="*{login}"></div>
+						<small>Ex: pessoal@email.com</small>
 					</div>
-					<div class="form-group mt-3">
-						<label for="senha"?>Senha*</label>
-						<input th:field="*{senha}" th:errorclass="is-invalid"  class="form-control" type="password"   placeholder="Digite sua senha"/>
-						<small>Digite sua senha(minimo 6 caracteres)</small>
+					<div th:if="${erro} == true" class="alert alert-danger " role="alert">As senhas digitadas precisam ser iguais!</div>
+					<div class="form-group col-md-6">
+						<label for="senha">Senha*</label>
+						<input th:field="*{senha}" th:errorclass="is-invalid" class="form-control" type="password"   placeholder="Digite sua senha"/>
+						<div class="invalid-feedback" th:errors="*{senha}"></div>
+						<small>Digite sua senha(de 8-20 caracteres)</small>
 					</div>
-					<div class="form-group mt-3">
-						<label for="senha"?>Confirmar senha*</label>
+					<div class="form-group mt-3 col-md-6">
+						<label for="senha">Confirmar senha*</label>
 						<input th:field="*{confirmarSenha}" th:errorclass="is-invalid"  class="form-control" type="password"   placeholder="Confirme sua senha"/>
-						<small>Digite sua senha(minimo 8 caracteres)</small>
+						<small>Digite sua senha(mínimo 8-20 caracteres)</small>
 					</div>
-					<div class="form-group mt-3">
-						<label for="cpf"?>CPF*</label>
+					<div class="form-group mt-3 col-md-4">
+						<label for="cpf">CPF*</label>
 						<input th:field="*{cpf}" th:errorclass="is-invalid"  class="form-control"   placeholder="Confirme sua senha"/>
-						<small>Ex:45617318810</small>
+						<div class="invalid-feedback" th:errors="*{cpf}"></div>
+						<small>Ex: 99999999911</small>
 					</div>
 					
-					<div class="form-group mt-3">
+					<div class="form-group mt-3 col-md-4">
 						<label for="dataNascimento"?>Data de nascimento*</label>
 						<input th:field="*{dataNascimento}" th:errorclass="is-invalid"  class="form-control" type="date"   placeholder="Digite sua data de nascimento"/>
-						<small>Ex:08/09/1995</small>
+						<div class="invalid-feedback" th:errors="*{dataNascimento}"></div>
+						<small></small>
 					</div>
-					<div class="form-group mt-3">
+					<div class="form-group mt-3 col-md-4">
 						<label for="sexo"?>Sexo*</label>
 						<select th:field="*{sexo}" class="form-select form-select mb-3" aria-label=".form-select example">
-						    <option th:value="'M'" th:text="Masculino"></option>
 						    <option th:value="'F'" th:text="Feminino"></option>
-						    <option th:value="'N'" th:text="Indeterminado"></option>
+						    <option th:value="'M'" th:text="Masculino"></option>
+						    <option th:value="'N'" th:text="Não-Informar"></option>
 						</select>
 					</div>
 					
-					<div th:replace="~{base :: titulo('Endereço')}"></div>
-					<div class="form-group mt-3">
-						<label for="cep"?>CEP*</label>
-						<input th:field="*{cep}" th:errorclass="is-invalid"  class="form-control"   placeholder="Digite sua data de nascimento"/>
-						<small>Ex:37133-550</small>
+					<div class="alert alert-dark d-flex align-items-center" role="alert">
+					  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+					  	<div><h3 style="color:gray;">Endereço</h3></div>
 					</div>
-					<div class="form-group mt-3">
-						<label for="estado"?>Sexo*</label>
+					<div class="form-group mt-3 col-md-3">
+						<label for="cep"?>CEP*</label>
+						<input th:field="*{cep}" th:errorclass="is-invalid"  class="form-control"   placeholder="Digite seu CEP"/>
+						<div class="invalid-feedback" th:errors="*{cep}"></div>
+						<small>Ex:37133550</small>
+					</div>
+					<div class="form-group mt-3 col-md-2">
+						<label for="estado"?>Estado*</label>
 						<select th:field="*{estado}" class="form-select form-select mb-3" aria-label=".form-select example">
 						    <option th:value="'AC'" th:text="Acre"></option>
 						    <option th:value="'AL'" th:text="Alagoas"></option>
@@ -93,29 +105,37 @@
 						    <option th:value="'DF'" th:text="Distrito-Federal"></option>
 						</select>
 					</div>
-					<div class="form-group mt-3">
-						<label for="cidade"?>Cidade*</label>
-						<input th:field="*{cidade}" th:errorclass="is-invalid"  class="form-control"    placeholder="Digite sua data de nascimento"/>
+					<div class="form-group mt-3 col-md-7">
+						<label for="cidade">Cidade*</label>
+						<input th:field="*{cidade}" th:errorclass="is-invalid"  class="form-control"    placeholder="Digite sua Cidade"/>
 						<small></small>
 					</div>
-					<div class="form-group mt-3">
-						<label for="rua"?>Rua*</label>
-						<input th:field="*{rua}" th:errorclass="is-invalid"  class="form-control"   placeholder="Digite sua data de nascimento"/>
+					<div class="form-group mt-3 col-md-5">
+						<label for="rua">Rua*</label>
+						<input th:field="*{rua}" th:errorclass="is-invalid"  class="form-control"   placeholder="Digite sua rua"/>
 						<small></small>
 					</div>
-					<div class="form-group mt-3">
-						<label for="numero"?>Numero*</label>
-						<input th:field="*{numero}" th:errorclass="is-invalid"  class="form-control"    placeholder="Digite sua data de nascimento"/>
+					<div class="form-group mt-3 col-md-2">
+						<label for="numero">Numero*</label>
+						<input th:field="*{numero}" th:errorclass="is-invalid"  class="form-control"    placeholder="Número"/>
 						<small></small>
 					</div>
-					<div class="form-group mt-3">
-						<label for="complemento"?>Complemento*</label>
-						<input th:field="*{complemento}" th:errorclass="is-invalid"  class="form-control"    placeholder="Digite sua data de nascimento"/>
+					<div class="form-group mt-3 col-md-5">
+						<label for="complemento">Complemento</label>
+						<input th:field="*{complemento}" th:errorclass="is-invalid"  class="form-control"    placeholder="Ex: Bloco 1, Ap 21"/>
 						<small></small>
 					</div>
-					<button class="btn btn-primary mt-3" type="submit">Finalizar</button>
-					<button class="btn btn-primary mt-3" type="submit">Cadastrar como viajante?</button>
-					
+				
+					<a th:href="@{/login}" class="btn btn-secondary mt-3 col-md-5 ">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+ 							<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+					</svg>Voltar</a>
+					<div class="col-md-2"></div>
+					<button class="btn btn-secondary mt-3 col-md-5 " type="submit">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+  							<path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+  							<path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+						</svg>Finalizar</button>
 				</form>
 			</div>
 		</div>

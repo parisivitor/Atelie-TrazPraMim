@@ -1,6 +1,7 @@
 package br.com.padawans.trazpramim.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Controller;
 
@@ -17,7 +18,7 @@ public class RequisicaoViajante {
 	private String numeroPortas;
 	@NotBlank
 	private String placa;
-	
+	@Size(max = 499, message = "link muito grande, adicione outro com ate 500 caracteres")
 	private String urlCarro;
 
 	public RequisicaoViajante() {

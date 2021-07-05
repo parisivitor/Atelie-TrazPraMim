@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,10 +30,11 @@ public class ViagemController {
 	private UserRepository userRepository;
 
 	@GetMapping("formulario")
-	public String formulario(RequisicaoNovaViagem requisicao) {
+	public String formulario(RequisicaoNovaViagem requisicao, Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		Optional<User> user = userRepository.findByLogin(username);
 		if(user.get().getViajante() != null) {
+			model.addAttribute("sucesso", true);
 			return "viagem/formulario";
 		}
 		else {
@@ -43,8 +45,9 @@ public class ViagemController {
 	}
 
 	@PostMapping("novo")
-	public String novo(@Valid RequisicaoNovaViagem requisicao, BindingResult result) {
+	public String novo(@Valid RequisicaoNovaViagem requisicao, BindingResult result, Model model) {
 		if (result.hasErrors()) {
+			model.addAttribute("erro",true);
 			return "viagem/formulario";
 		}
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -52,7 +55,8 @@ public class ViagemController {
 		Viagem viagem = requisicao.toViagem();
 		viagem.setUser(user.get());
 		viagemRepository.save(viagem);
+		model.addAttribute("sucesso", true);
 	
-		return "redirect:/home";
+		return "home";
 	}
 }

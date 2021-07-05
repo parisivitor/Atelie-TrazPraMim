@@ -1,38 +1,64 @@
 <html>
+<meta charset="UTF-8"/>
 <head th:replace="~{base :: head}"></head>
 <body>
 	<div th:replace="~{base :: logo}"></div>
 	<div class="container">
-		<div th:replace="~{base :: titulo('Traz Pra Mim')}"></div>
-		<div class="card mb-3">
-			<img src="https://image.freepik.com/vetores-gratis/oferta-de-compra-a-prazo-negocio-de-compras-servico-ao-cliente-conveniente_335657-3151.jpg" class="img-fluid" alt="...">
+		<div th:if="${sucesso} == true" class="alert alert-success " role="alert">
+			 <h4 class="alert-heading">Parabés!</h4>
+			 <p>Viagem publicada com sucesso.</p>
+			 <hr>
+			 <p class="mb-0">Caso queira cancela ou editar: basta ir no perfil > viagens > cancelar/editar</p>
 		</div>
+		<div class="p-5 mb-4 bg-light rounded-3">
+	      <div class="container-fluid py-5">
+	        <h1 class="display-5 fw-bold">Pedaços do meu Brasil </h1>
+	        <p class="col-md-8 fs-4">Experimente e aproveite produtos típicos de qualquer cidade do Brasil sem precisar sair de casa. Busque por produtos e encontre viajantes que estão a caminho de sua cidade!</p>
+	        <button class="btn btn-secondary btn-lg" type="button">
+        		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  				<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+				</svg>Buscar produtos
+			</button>
+	      </div>
+	    </div>
+		<div class="p-5 mb-4 bg-secondary rounded-3">
+	      <div class="container-fluid py-5">
+	        <h1 class="display-5 fw-bold text-light">Quer viajar e ainda ganhar por isso?</h1>
+	        <p class="col-md-8 fs-4 text-light">Com o Traz Pra Mim, é possível você deixar sua viagem mais barata recebendo ao levar produtos típicos de uma região a outra!</p>
+	        <button class="btn btn-light btn-lg" type="button">
+	        	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-compass" viewBox="0 0 16 16">
+  				<path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+  				<path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
+				</svg>Levar produtos
+			</button>
+	      </div>
+    	</div>
 		<div th:replace="~{base :: titulo('Viagens Acontecendo')}"></div>
 		<div class="card mb-3" th:each="viagem : ${viagens}">
-				<div class="card-body">
-					<div class="row">
-						<div class="col-12 col-sm-8 mb-3">
-							<div class="row ">
-								<div class="col-md-5">Valor: <span th:if="${viagem.preco} != null" th:text="${'R$ ' + #numbers.formatDecimal(viagem.preco, 3, 'POINT', 2, 'COMMA')}">200,99</span></div>
-								<div class="col-md-6">Data da entrega: <span th:text="${#temporals.format(viagem.dataDaEntrega, 'dd/MM/yyyy')}">10/02/2020</span></div>
-							</div>
-							
-							<div>Produto</div> 
-							<div> <input class="form-control" th:value="${viagem.nomeProduto}" value="url do produto" /></div>
-							 
-							<div>Descri��o</div>
-							<div>
-								<textarea class="form-control" th:text="${viagem.descricao}">descri��o do pedido</textarea>
-							</div>
-						</div>
-						<div class="col-12 col-sm-4">
-							<div>
-								<img class="img-thumbnail" th:src="${viagem.urlImagem}" src="" />
-							</div>
-						</div>
+		<div class="card-body">
+			<div class="row">
+				<div class="col-12 col-sm-8 mb-3">
+					<div class="row ">
+						<div class="col-md-5">Valor: <span th:if="${viagem.preco} != null" th:text="${'R$ ' + #numbers.formatDecimal(viagem.preco, 3, 'POINT', 2, 'COMMA')}">200,99</span></div>
+						<div class="col-md-6">Data da entrega: <span th:text="${#temporals.format(viagem.dataDaEntrega, 'dd/MM/yyyy')}">10/02/2020</span></div>
+					</div>
+					
+					<div>Produto</div> 
+					<div> <input class="form-control" th:value="${viagem.nomeProduto}" value="url do produto" /></div>
+					 
+					<div>Descrição</div>
+					<div>
+						<textarea class="form-control" th:text="${viagem.descricao}">descrição do pedido</textarea>
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div>
+						<img class="img-thumbnail" th:src="${viagem.urlImagem}" src="" />
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
 	</div>
 	
 	
